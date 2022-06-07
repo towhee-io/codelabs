@@ -41,13 +41,13 @@ jobs:
         run: |
           ./convert.sh && docker build "$GITHUB_WORKSPACE/" -f  "Dockerfile" -t harbor-us1.zilliz.cc/ued/milvus-codelabs:${{ github.sha }}
 
-      - name: Push image to Harbor
-        id: push-image
-        run: |
-          docker push harbor-us1.zilliz.cc/ued/milvus-codelabs:${{ github.sha }}
+      # - name: Push image to Harbor
+      #   id: push-image
+      #   run: |
+      #     docker push harbor-us1.zilliz.cc/ued/milvus-codelabs:${{ github.sha }}
 
-      - name: Deploy to cluster
-        run: |
-          echo ${{ secrets.UED_KUBECONFIG }} > config64
-          base64 -d config64 > kubeconfig
-          kubectl set image deployment/milvus-codelabs milvus-codelabs=harbor-us1.zilliz.cc/ued/milvus-codelabs:${{ github.sha }} -n ued --kubeconfig=kubeconfig
+      # - name: Deploy to cluster
+      #   run: |
+      #     echo ${{ secrets.UED_KUBECONFIG }} > config64
+      #     base64 -d config64 > kubeconfig
+      #     kubectl set image deployment/milvus-codelabs milvus-codelabs=harbor-us1.zilliz.cc/ued/milvus-codelabs:${{ github.sha }} -n ued --kubeconfig=kubeconfig

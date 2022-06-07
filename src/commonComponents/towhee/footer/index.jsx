@@ -30,11 +30,6 @@ export default function TowheeFooter() {
                   Documentation
                 </a>
               </li>
-              <li>
-                <a href="https://demos.towhee.io/" target="_blank">
-                  Demo
-                </a>
-              </li>
             </ul>
           </nav>
 
@@ -76,11 +71,6 @@ export default function TowheeFooter() {
                   Documentation
                 </a>
               </li>
-              <li>
-                <a href="https://demos.towhee.io/" target="_blank">
-                  Demo
-                </a>
-              </li>
             </ul>
           </nav>
 
@@ -90,7 +80,7 @@ export default function TowheeFooter() {
                 <RectAngle />
               </span>
               <span className={classes.rectangl}>
-                <RectAngle />
+                <RectAngle color="#1aabfd" />
               </span>
             </div>
             <p className={classes.copyright}>

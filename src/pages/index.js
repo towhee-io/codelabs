@@ -83,13 +83,13 @@ export default function HomePage({ data = [] }) {
       <section className={classes.homeContainer}>
         <Box className={classes.welcome}>
           <Box className={classes.inner}>
-            <Typography component="h2">Welcome to Milvus Codelabs!</Typography>
+            <Typography component="h2">Welcome to Towhee Codelabs!</Typography>
             <Box>
               <Typography component="p">
-                Milvus Codelabs provide a guided, tutorial, hands-on milvus
+                Milvus Codelabs provide a guided, tutorial, hands-on towhee
                 integration experience. Most tutorials will step you through the
                 process of installation, building a milvus application, or
-                integrate milvus with your existing application.
+                integrate towhee with your existing application.
               </Typography>
             </Box>
           </Box>

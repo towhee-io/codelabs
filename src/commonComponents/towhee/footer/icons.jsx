@@ -1,4 +1,4 @@
-export const RectAngle = () => (
+export const RectAngle = ({color = '#FFCA42'}) => (
   <svg
     className="svg rectangle"
     width="148"
@@ -7,7 +7,7 @@ export const RectAngle = () => (
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
-    <path d="M148 0V148H0L148 0Z" fill="#FFCA42" />
+    <path d="M148 0V148H0L148 0Z" fill={color} />
   </svg>
 );
 
