@@ -5,7 +5,7 @@ import classes from './index.module.less';
 export default function TutorialCard(props) {
   const { title, duration, updated, url, id } = props;
 
-  const pdfLink = `https://github.com/zilliztech/codelabs/raw/master/pdf/${id}.pdf`;
+  const pdfLink = `https://github.com/towhee-io/codelabs/raw/master/pdf/${id}.pdf`;
 
   return (
     <Box className={classes.tutorialCardWrapper}>
