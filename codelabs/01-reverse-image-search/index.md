@@ -74,9 +74,9 @@ Before getting started, please make sure you have [installed milvus](https://mil
 ```python
 from pymilvus import connections, FieldSchema, CollectionSchema, DataType, Collection, utility
 
-def create_milvus_collection(collection_name, dim):
-    connections.connect(host='127.0.0.1', port='19530')
-    
+connections.connect(host='127.0.0.1', port='19530')
+
+def create_milvus_collection(collection_name, dim):  
     if utility.has_collection(collection_name):
         utility.drop_collection(collection_name)
     
