@@ -16,9 +16,7 @@ This codelab will show how to build an text-image search engine with Towhee and 
 
 The basic idea behind our text-image search is the extract embeddings from images and texts using a deep neural network and compare the embeddings with those stored in Milvus. Then to use [Towhee](https://towhee.io/), a machine learning framework that allows for creating data processing pipelines, and it also provides predefined operators which implement insert and query operation in Milvus.
 
-<div align="left">
-  <img src="./pic/workflow.png">
-</div>
+![](./pic/workflow.png)
 
 ## Preparation
 
@@ -56,9 +54,7 @@ df = pd.read_csv('reverse_image_search.csv')
 df.head()
 ```
 
-<div align="left">
-  <img src="./pic/show_data.png">
-</div>
+![](./pic/show_data.png)
 
 To use the dataset for text-image search, let's first define some helper function:
 
@@ -124,9 +120,7 @@ towhee.glob['path']('./teddy.png') \
       .show()
 ```
 
-<div align="left">
-  <img src="./pic/clip1.png">
-</div>
+![](./pic/clip1.png)
 
 And we can set the parameter `modality='text'` to get the text embedding:
 
@@ -138,9 +132,7 @@ towhee.dc['text'](["A teddybear on a skateboard in Times Square."]) \
       .show()
 ```
 
-<div align="left">
-  <img src="./pic/clip2.png">
-</div>
+![](./pic/clip2.png)
 
 Here is detailed explanation of the code:
 
@@ -190,9 +182,7 @@ Now that embeddings for candidate images have been inserted into Milvus, we can 
 )
 ```
 
-<div align="left">
-  <img src="./pic/search.png">
-</div>
+![](./pic/search.png)
 
 ## Release a Showcase
 

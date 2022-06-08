@@ -18,9 +18,7 @@ This codelab will show how to build a reverse-video-search engine from scratch u
 
 Reverse video search is similar like [reverse image search](https://en.wikipedia.org/wiki/Reverse_image_search). In simple words, it takes a video as input to search for similar videos. As we know that video-related tasks are harder to tackle, video models normally do not achieve as high scores as other types of models. However, there are increasing demands in AI applications in video. Reverse video search can effectively discover related videos and improve other applications.
 
-<div align="left">
-  <img src="./pic/workflow.png">
-</div>
+![](./pic/workflow.png)
 
 **What are Milvus & Towhee?**
 
@@ -63,9 +61,7 @@ df = pd.read_csv('./reverse_video_search.csv')
 df.head(3)
 ```
 
-<div align="left">
-  <img src="./pic/show_data.png">
-</div>
+![](./pic/show_data.png)
 
 For later steps to easier get videos & measure results, we build some helpful functions in advance:
 
@@ -204,23 +200,15 @@ display.HTML(html)
 
 Query video "eating_carrots":
 
-<div align="left">
-  <img src="./pic/query.gif">
-</div>
+![](./pic/query.gif)
 
 Top 3 search results:
 
-<div align="left">
-  <img src="./pic/top1.gif">
-</div>
+![](./pic/top1.gif)
 
-<div align="left">
-  <img src="./pic/top2.gif">
-</div>
+![](./pic/top2.gif)
 
-<div align="left">
-  <img src="./pic/top3.gif">
-</div>
+![](./pic/top3.gif)
 
 ## Evaluation
 
@@ -250,9 +238,7 @@ benchmark = (
 )
 ```
 
-<div align="left">
-  <img src="./pic/metric1.png">
-</div>
+![](./pic/metric1.png)
 
 ## Optimization
 
@@ -290,9 +276,7 @@ benchmark = (
 )
 ```
 
-<div align="left">
-  <img src="./pic/metric2.png">
-</div>
+![](./pic/metric2.png)
 
 With vector normalization, we have increased the mHR to 0.66 and mAP to about 0.8, which look better now.
 
@@ -328,9 +312,7 @@ benchmark = (
 )
 ```
 
-<div align="left">
-  <img src="./pic/metric3.png">
-</div>
+![](./pic/metric3.png)
 
 Switching to MVIT model increases the mHR to 0.79 and mAP to 0.86, which are much better than X3D model. However, both insert and search time have increased. It's time for you to make trade-off between latency and accuracy. You're always encouraged to play around with this tutorial.
 

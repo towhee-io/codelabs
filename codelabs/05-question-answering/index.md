@@ -16,9 +16,8 @@ Question answering is a classic problem in the field of natural language process
 
 This example will show you how to find the similar asked question and get the answer. The basic idea behind question answering is to use Towhee to generate embedding from the question dataset and compare the input question with the embedding stored in Milvus.
 
-<div align="left">
-  <img src="./pic/workflow.png">
-</div>
+![](./pic/workflow.png)
+
 
 ## Preparations
 
@@ -49,9 +48,7 @@ df = pd.read_csv('question_answer.csv')
 df.head()
 ```
 
-<div align="left">
-  <img src="./pic/show_data.png">
-</div>
+![](./pic/show_data.png)
 
 To use the dataset to get answers, let's first define the dictionary:
 

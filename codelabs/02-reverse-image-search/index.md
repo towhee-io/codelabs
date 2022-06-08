@@ -22,9 +22,7 @@ The process of visualize reverse image search is mainly divided into three steps
 2. Insert the vector into FAISS/HNSWLib, then create the index and save the index file.
 3. Feder reads the index file and visualizes the process of searching for images. And Feder support `searchByID` or `SearchByVec` for the quey image.
 
-<div align="center">
-  <img align="center" src="./pic/feder_towhee.png">
-</div>
+![](./pic/feder_towhee.png)
 
 
 ## Preparation

@@ -45,9 +45,9 @@ df = pd.read_csv('pubchem_10000.smi')
 df.head()
 ```
 
-<div align="left">
-  <img src="./pic/show_data.png">
-</div>
+
+![](./pic/show_data.png)
+
 
 To use the dataset for molecular search, let's first define the dictionary and helper function:
 
@@ -147,9 +147,9 @@ Now that fingerprint for candidate SMILES have been inserted into Milvus, we can
 )
 ```
 
-<div align="left">
-  <img src="./pic/sim_search.png">
-</div>
+
+![](./pic/sim_search.png)
+
 
 If you want to show the molecular structure with images, you can use the `to_images` function.
 
@@ -164,9 +164,9 @@ If you want to show the molecular structure with images, you can use the `to_ima
 )
 ```
 
-<div align="left">
-  <img src="./pic/sim_search_img.png">
-</div>
+
+![](./pic/sim_search_img.png)
+
 
 #### Superstructure and Substructure search
 
@@ -191,9 +191,9 @@ In the following example, the limit is set to 3, but there are less than 3 subst
 )
 ```
 
-<div align="left">
-  <img src="./pic/sub_super_search.png">
-</div>
+
+![](./pic/sub_super_search.png)
+
 
 ## Release a Showcase
 

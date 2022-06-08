@@ -164,9 +164,7 @@ for model in model_dim:
         )
 ```
 
-<div align="left">
-  <img src="./pic/metric1.png">
-</div>
+![](./pic/metric1.png)
 
 ### **Vision Transformer**
 
@@ -216,15 +214,11 @@ with Timer('ViT query'):
     )
 ```
 
-<div align="left">
-  <img src="./pic/metric2.png">
-</div>
+![](./pic/metric2.png)
 
 We ran the experiment above on our own and found that `ViT-large` performed the best in this dataset. `EfficientNet-B2` also performs well (with less than half the runtime of `ViT-large`). We encourage you to try using your own datasets, model architectures, and training techniques for comparison.
 
-<div align="center">
-  <img src="./pic/metric_table.png">
-</div>
+![](./pic/metric_table.png)
 
 **Note:** There are also predefined operators of `ViT` models on towhee hub. You can try the other `ViT` models with the [image-embedding/timm](https://towhee.io/image-embedding/timm).
 
@@ -268,9 +262,7 @@ collection = create_milvus_collection('tf_efficientnet_b2_512', 512)
 )
 ```
 
-<div align="left">
-  <img src="./pic/metric3.png">
-</div>
+![](./pic/metric3.png)
 
 The dimension of embedding vectors is reduced from 1408 to 512, thereby reducing memory usage by around 60%. Despite this, it maintains a reasonable performance (91.6% mAP for reduced vectors vs 92.5% for full vectors).
 
@@ -323,9 +315,7 @@ yolo+resnet load: 33.97s
 
 Using a preceding object detection with yolo can fix the bad cases, but it also makes the search engine much slower.
 
-<div align="left">
-  <img src="./pic/obj_search.png">
-</div>
+![](./pic/obj_search.png)
 
 ## Making Our Image Search Engine Production Ready
 
@@ -393,9 +383,7 @@ Towhee supports an exception-safe execution mode that allows the pipeline to con
 )
 ```
 
-<div align="left">
-  <img src="./pic/exception_search.png">
-</div>
+![](./pic/exception_search.png)
 
 ## Deploy as a Microservice
 

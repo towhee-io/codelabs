@@ -16,9 +16,7 @@ This codelab will show you how to build a reverse image search engine using Milv
 
 [Towhee](https://towhee.io/) is a machine learning framework that allows for creating data processing pipelines, and it provides predefined operators which implement insert and query operation in Milvus.
 
-<div align="center">
-  <img align="center" src="./pic/workflow.png" >
-</div>
+![](./pic/workflow.png)
 
 ## Preparation
 
@@ -57,9 +55,7 @@ df = pd.read_csv('reverse_image_search.csv')
 df.head()
 ```
 
-<div align="left">
-  <img src="./pic/show_data.png">
-</div>
+![](./pic/show_data.png)
 
 
 ### Create a Milvus Collection
@@ -140,9 +136,8 @@ Now that embeddings for candidate images have been inserted into Milvus, we can 
 )
 ```
 
-<div align="left">
-  <img src="./pic/search.png">
-</div>
+![](./pic/search.png)
+
 
 ## Evaluation with Towhee
 
@@ -167,9 +162,7 @@ benchmark = (
 )
 ```
 
-<div align="left">
-  <img src="./pic/metric1.png">
-</div>
+![](./pic/metric1.png)
 
 
 The mean HR of all the queries is 0.687 (not a great result). Let's optimize it further.
@@ -204,9 +197,7 @@ benchmark = (
 )
 ```
 
-<div align="left">
-  <img src="./pic/metric2.png">
-</div>
+![](./pic/metric2.png)
 
 
 By normalizing the embedding features, the mean HR shoots up to 0.781.
@@ -273,9 +264,7 @@ benchmark = (
 )
 ```
 
-<div align="left">
-  <img src="./pic/metric3.png">
-</div>
+![](./pic/metric3.png)
 
 
 By replacing Resnet50 with EfficientNet-B7, the mean HR is raised to 0.878! But the data processing pipeline also gets much slower and takes 28% more time.
