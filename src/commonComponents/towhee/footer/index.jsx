@@ -8,25 +8,41 @@ export default function TowheeFooter() {
     <footer className={classes.footerWrapper}>
       <div className={classes.footerContent}>
         <div className={classes.topContent}>
-          <a href="https://towhee.io" className={classes.logoWrapper}>
+          <a
+            rel="noreferrer"
+            href="https://towhee.io"
+            className={classes.logoWrapper}
+          >
             <TohiLogo />
           </a>
 
           <nav>
             <ul>
               <li>
-                <a href="https://github.com/towhee-io/towhee" target="_blank">
+                <a
+                  rel="noreferrer"
+                  href="https://github.com/towhee-io/towhee"
+                  target="_blank"
+                >
                   Contribute
                 </a>
               </li>
               <li>
-                <a href="https://towhee.io/pipelines">Pipelines</a>
+                <a rel="noreferrer" href="https://towhee.io/pipelines">
+                  Pipelines
+                </a>
               </li>
               <li>
-                <a href="https://towhee.io/operators">Operators</a>
+                <a rel="noreferrer" href="https://towhee.io/operators">
+                  Operators
+                </a>
               </li>
               <li>
-                <a href="https://docs.towhee.io/" target="_blank">
+                <a
+                  rel="noreferrer"
+                  href="https://docs.towhee.io/"
+                  target="_blank"
+                >
                   Documentation
                 </a>
               </li>
@@ -35,17 +51,29 @@ export default function TowheeFooter() {
 
           <ul className={classes.socials}>
             <li>
-              <a href="https://slack.towhee.io" target="_blank">
+              <a
+                rel="noreferrer"
+                href="https://slack.towhee.io"
+                target="_blank"
+              >
                 <Slack />
               </a>
             </li>
             <li>
-              <a href="https://twitter.com/towheeio" target="_blank">
+              <a
+                rel="noreferrer"
+                href="https://twitter.com/towheeio"
+                target="_blank"
+              >
                 <Twitter />
               </a>
             </li>
             <li>
-              <a href="https://github.com/towhee-io/towhee" target="_blank">
+              <a
+                rel="noreferrer"
+                href="https://github.com/towhee-io/towhee"
+                target="_blank"
+              >
                 <Github />
               </a>
             </li>
@@ -56,18 +84,30 @@ export default function TowheeFooter() {
           <nav className={classes.footNav}>
             <ul>
               <li>
-                <a href="https://github.com/towhee-io/towhee" target="_blank">
+                <a
+                  rel="noreferrer"
+                  href="https://github.com/towhee-io/towhee"
+                  target="_blank"
+                >
                   Contribute
                 </a>
               </li>
               <li>
-                <a href="https://towhee.io/pipelines">Pipelines</a>
+                <a rel="noreferrer" href="https://towhee.io/pipelines">
+                  Pipelines
+                </a>
               </li>
               <li>
-                <a href="https://towhee.io/operators">Operators</a>
+                <a rel="noreferrer" href="https://towhee.io/operators">
+                  Operators
+                </a>
               </li>
               <li>
-                <a href="https://docs.towhee.io/" target="_blank">
+                <a
+                  rel="noreferrer"
+                  href="https://docs.towhee.io/"
+                  target="_blank"
+                >
                   Documentation
                 </a>
               </li>

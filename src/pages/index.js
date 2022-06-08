@@ -76,7 +76,7 @@ export default function HomePage({ data = [] }) {
       case 'duration':
         return tempData.sort((x, y) => x.duration - y.duration);
     }
-  }, [data, sortWay, pathname, keyWord, categoryVal]);
+  }, [data, sortWay, keyWord, categoryVal]);
 
   return (
     <Layout>
