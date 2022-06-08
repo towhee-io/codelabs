@@ -86,10 +86,12 @@ export default function HomePage({ data = [] }) {
             <Typography component="h2">Welcome to Towhee Codelabs!</Typography>
             <Box>
               <Typography component="p">
-                Milvus Codelabs provide a guided, tutorial, hands-on towhee
+                Towhee Codelabs provide a guided, tutorial, hands-on towhee
                 integration experience. Most tutorials will step you through the
-                process of installation, building a milvus application, or
-                integrate towhee with your existing application.
+                process of the unstructured data, such as reverse image search,
+                reverse video search, audio classification, question and answer
+                systems, molecular search, etc. Most of the bootcamp can be found
+                at https://github.com/towhee-io/examples.
               </Typography>
             </Box>
           </Box>
