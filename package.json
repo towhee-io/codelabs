@@ -5,7 +5,7 @@
   "scripts": {
     "dev-milvus": "node generate.js --env milvus && next dev",
     "dev-tohi": "node generate.js --env towhee && next dev",
-    "build": "node generate.js --env milvus && next build && next export",
+    "build": "node generate.js --env towhee && next build && next export",
     "start": "next start",
     "lint": "next lint"
   },
