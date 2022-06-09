@@ -1,6 +1,6 @@
 summary: Build a Molecular Search Engine in Minutes
 id: build-a-molecular-search-engine-in-minutes
-categories: Chemical
+categories: Medical
 tags: molecular-search
 status: Published
 authors: Shiyu
