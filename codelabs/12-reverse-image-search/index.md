@@ -29,10 +29,12 @@ The process of visualize reverse image search is mainly divided into three steps
 
 - **Install dependencies**
 
-First to install the related dependencies, such as [feder](https://github.com/zilliztech/feder), [towhee](https://github.com/towhee-io/towhee), [faiss](https://github.com/facebookresearch/faiss), [hnswlib](https://github.com/nmslib/hnswlib) and numpy.
+First to install the related dependencies, such as [feder](https://github.com/zilliztech/feder), [towhee](https://github.com/towhee-io/towhee), [hnswlib](https://github.com/nmslib/hnswlib) and numpy.
+
+> Please install [faiss](https://github.com/facebookresearch/faiss) with [conda](https://docs.conda.io/projects/conda/en/latest/user-guide/install/index.html) in your env, such as`conda install -c pytorch faiss-cpu`, or you can try `pip install faiss-cpu`(not official).
 
 ```bash
-$ python -m pip -q install federpy towhee faiss hnswlib numpy
+$ python -m pip -q install federpy towhee hnswlib numpy
 ```
 
 - **Prepare the data**
