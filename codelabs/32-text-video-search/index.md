@@ -192,7 +192,7 @@ $ sudo apt-get install git-lfs
 $ git lfs install
 ```
 
-[CLIP4Clip](https://arxiv.org/abs/2104.08860) is a video-text retrieval model based on [CLIP (ViT-B)](https://github.com/openai/CLIP). The [towhee clip4clip operator](https://towhee.io/towhee/clip4clip) with pretrained weights can easily extract video embedding and text embedding by a few codes.
+[CLIP4Clip](https://arxiv.org/abs/2104.08860) is a video-text retrieval model based on [CLIP (ViT-B)](https://github.com/openai/CLIP). The [towhee clip4clip operator](https://towhee.io/video-text-embedding/clip4clip) with pretrained weights can easily extract video embedding and text embedding by a few codes.
 
 ![](./pic/clip4clip.png)
 
@@ -211,7 +211,7 @@ dc = (
       .runas_op['video_id', 'id'](func=lambda x: int(x[-4:]))
       .video_decode.ffmpeg['video_path', 'frames'](sample_type='uniform_temporal_subsample', args={'num_samples': 12})
       .runas_op['frames', 'frames'](func=lambda x: [y for y in x])
-      .clip4clip['frames', 'vec'](model_name='clip_vit_b32', modality='video', device=device)
+      .video_text_embedding.clip4clip['frames', 'vec'](model_name='clip_vit_b32', modality='video', device=device)
       .to_milvus['id', 'vec'](collection=collection, batch=30)
 )
 print('Total number of inserted data is {}.'.format(collection.num_entities))
@@ -224,7 +224,7 @@ Here is detailed explanation for each line of the code:
 - `towhee.read_csv(test_sample_csv_path)`: read tabular data from csv file;
 - `.runas_op['video_id', 'id'](func=lambda x: int(x[-4:]))`: for each row from the data, convert the data type of the column `id` from last 4 number of `video_id`;
 - `.video_decode.ffmpeg` and `runas_op`: subsample the video uniformly, and then get a list of images in the video, which are the input of the clip4clip model;
-- `.clip4clip['frames', 'vec'](model_name='clip_vit_b32', modality='video')`: extract embedding feature from the images subsampled from video, and then mean pool them in the temporal dimension, which repre.
+- `.video_text_embedding.clip4clip['frames', 'vec'](model_name='clip_vit_b32', modality='video')`: extract embedding feature from the images subsampled from video, and then mean pool them in the temporal dimension, which repre.
 - `.to_milvus['id', 'vec'](collection=collection, batch=30)`: insert video embedding features in to Milvus;
 
 ### Search in Milvus with Towhee
@@ -232,7 +232,7 @@ Here is detailed explanation for each line of the code:
 ```
 dc = (
     towhee.read_csv(test_sample_csv_path).unstream()
-      .clip4clip['sentence','text_vec'](model_name='clip_vit_b32', modality='text', device=device)
+      .video_text_embedding.clip4clip['sentence','text_vec'](model_name='clip_vit_b32', modality='text', device=device)
       .milvus_search['text_vec', 'top10_raw_res'](collection=collection, limit=10)
       .runas_op['video_id', 'ground_truth'](func=lambda x : [int(x[-4:])])
       .runas_op['top10_raw_res', 'top1'](func=lambda res: [x.id for i, x in enumerate(res) if i < 1])
