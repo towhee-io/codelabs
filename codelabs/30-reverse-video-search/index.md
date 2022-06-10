@@ -125,7 +125,7 @@ dc = (
     towhee.read_csv('reverse_video_search.csv')
       .runas_op['id', 'id'](func=lambda x: int(x))
       .video_decode.ffmpeg['path', 'frames'](sample_type='uniform_temporal_subsample', args={'num_samples': 16})
-      .video_classification['frames', ('labels', 'scores', 'features')].pytorchvideo(
+      .action_classification['frames', ('labels', 'scores', 'features')].pytorchvideo(
           model_name='x3d_m', skip_preprocess=True)
       .to_milvus['id', 'features'](collection=collection, batch=10)
 )
@@ -138,7 +138,7 @@ Here are some details for each line of the assemble pipeline:
 - `towhee.read_csv()`: read tabular data from csv file
 - `.runas_op['id', 'id'](func=lambda x: int(x))`: for each row from the data, convert data type of the column id to int
 - `.video_decode.ffmpeg['path', 'frames']()`: an embeded Towhee operator reading video as frames with specified sample method and number of samples. [learn more](https://towhee.io/video-decode/ffmpeg)
-- `.video_classification['frames', ('labels', 'scores', 'features')].pytorchvideo()`: an embeded Towhee operator applying specified model to video frames, which can be used to generate video embedding. [learn more](https://towhee.io/video-classification/pytorchvideo)
+- `.action_classification['frames', ('labels', 'scores', 'features')].pytorchvideo()`: an embeded Towhee operator applying specified model to video frames, which can be used to generate video embedding. [learn more](https://towhee.io/video-classification/pytorchvideo)
 - `.to_milvus['id', 'features']()`: insert video embedding into Milvus collection
 
 ## Query Similar Videos from Milvus
@@ -155,7 +155,7 @@ query_path = './test/eating_carrots/ty4UQlowp0c.mp4'
 res_paths = (
     towhee.glob['path'](query_path)
         .video_decode.ffmpeg['path', 'frames'](sample_type='uniform_temporal_subsample', args={'num_samples': 16})
-        .video_classification['frames', ('labels', 'scores', 'features')].pytorchvideo(
+        .action_classification['frames', ('labels', 'scores', 'features')].pytorchvideo(
           model_name='x3d_m', skip_preprocess=True)
         .milvus_search['features', 'result'](collection=collection, limit=10)
         .runas_op['result', 'res_path'](func=lambda res: [id_video[x.id] for x in res])
@@ -226,7 +226,7 @@ In this section, we'll measure the performance with 2 metrics - mHR and mAP:
 benchmark = (
     towhee.glob['path']('./test/*/*.mp4')
         .video_decode.ffmpeg['path', 'frames'](sample_type='uniform_temporal_subsample', args={'num_samples': 16})
-        .video_classification['frames', ('labels', 'scores', 'features')].pytorchvideo(
+        .action_classification['frames', ('labels', 'scores', 'features')].pytorchvideo(
             model_name='x3d_m', skip_preprocess=True)
         .milvus_search['features', 'result'](collection=collection, limit=10)
         .runas_op['path', 'ground_truth'](func=ground_truth)
@@ -254,7 +254,7 @@ dc = (
     towhee.read_csv('reverse_video_search.csv')
       .runas_op['id', 'id'](func=lambda x: int(x))
       .video_decode.ffmpeg['path', 'frames'](sample_type='uniform_temporal_subsample', args={'num_samples': 16})
-      .video_classification['frames', ('labels', 'scores', 'features')].pytorchvideo(
+      .action_classification['frames', ('labels', 'scores', 'features')].pytorchvideo(
           model_name='x3d_m', skip_preprocess=True)
       .tensor_normalize['features', 'features']()
       .to_milvus['id', 'features'](collection=collection, batch=10)
@@ -263,7 +263,7 @@ dc = (
 benchmark = (
     towhee.glob['path']('./test/*/*.mp4')
         .video_decode.ffmpeg['path', 'frames'](sample_type='uniform_temporal_subsample', args={'num_samples': 16})
-        .video_classification['frames', ('labels', 'scores', 'features')].pytorchvideo(
+        .action_classification['frames', ('labels', 'scores', 'features')].pytorchvideo(
             model_name='x3d_m', skip_preprocess=True)
         .tensor_normalize['features', 'features']()
         .milvus_search['features', 'result'](collection=collection, limit=10)
@@ -290,7 +290,7 @@ dc = (
     towhee.read_csv('reverse_video_search.csv')
       .runas_op['id', 'id'](func=lambda x: int(x))
       .video_decode.ffmpeg['path', 'frames'](sample_type='uniform_temporal_subsample', args={'num_samples': 32})
-      .video_classification['frames', ('labels', 'scores', 'features')].pytorchvideo(
+      .action_classification['frames', ('labels', 'scores', 'features')].pytorchvideo(
           model_name='mvit_base_32x3', skip_preprocess=True)
       .tensor_normalize['features', 'features']()
       .to_milvus['id', 'features'](collection=collection, batch=10)
@@ -299,7 +299,7 @@ dc = (
 benchmark = (
     towhee.glob['path']('./test/*/*.mp4')
         .video_decode.ffmpeg['path', 'frames'](sample_type='uniform_temporal_subsample', args={'num_samples': 32})
-        .video_classification['frames', ('labels', 'scores', 'features')].pytorchvideo(
+        .action_classification['frames', ('labels', 'scores', 'features')].pytorchvideo(
           model_name='mvit_base_32x3', skip_preprocess=True)
       .tensor_normalize['features', 'features']()
         .milvus_search['features', 'result'](collection=collection, limit=10)
@@ -326,7 +326,7 @@ with towhee.api() as api:
     milvus_search_function = (
          api.video_decode.ffmpeg(
                 sample_type='uniform_temporal_subsample', args={'num_samples': 32})
-            .video_classification.pytorchvideo(model_name='mvit_base_32x3', skip_preprocess=True)
+            .action_classification.pytorchvideo(model_name='mvit_base_32x3', skip_preprocess=True)
             .runas_op(func=lambda x: x[-1])
             .tensor_normalize()
             .milvus_search(collection='mvit_base', limit=3)

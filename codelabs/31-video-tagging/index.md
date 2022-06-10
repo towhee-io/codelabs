@@ -83,7 +83,7 @@ import towhee
 (
     towhee.glob['path']('./train/tap_dancing/*.mp4')
           .video_decode.ffmpeg['path', 'frames'](sample_type='uniform_temporal_subsample', args={'num_samples': 16})
-          .video_classification['frames', ('predicts', 'scores', 'features')].pytorchvideo(
+          .action_classification['frames', ('predicts', 'scores', 'features')].pytorchvideo(
               model_name='x3d_m', skip_preprocess=True, topk=5)
           .select['path', 'predicts', 'scores']()
           .show()
@@ -97,7 +97,7 @@ Here are some details for each line of the assemble pipeline:
 - `towhee.read_csv()`: read tabular data from csv file
 
 - `.video_decode.ffmpeg()`: an embeded Towhee operator reading video as frames with specified sample method and number of samples. [learn more](https://towhee.io/video-decode/ffmpeg)
-- `.video_classification.pytorchvideo()`: an embeded Towhee operator applying specified model to video frames, which can be used to predict labels and extract features for video. [learn more](https://towhee.io/video-classification/pytorchvideo)
+- `.action_classification.pytorchvideo()`: an embeded Towhee operator applying specified model to video frames, which can be used to predict labels and extract features for video. [learn more](https://towhee.io/action-classification/pytorchvideo)
 
 ## Evaluation
 
@@ -116,7 +116,7 @@ start = time.time()
 dc = (
     towhee.read_csv('reverse_video_search.csv').unstream()
           .video_decode.ffmpeg['path', 'frames'](sample_type='uniform_temporal_subsample', args={'num_samples': 16})
-          .video_classification['frames', ('predicts', 'scores', 'features')].pytorchvideo(
+          .action_classification['frames', ('predicts', 'scores', 'features')].pytorchvideo(
               model_name='x3d_m', skip_preprocess=True, topk=5)
 )
 end = time.time()
@@ -148,7 +148,7 @@ There are more video models using different networks. Normally a more complicate
 benchmark = (
     towhee.read_csv('reverse_video_search.csv').unstream()
           .video_decode.ffmpeg['path', 'frames'](sample_type='uniform_temporal_subsample', args={'num_samples': 32})
-          .video_classification['frames', ('predicts', 'scores', 'features')].pytorchvideo(
+          .action_classification['frames', ('predicts', 'scores', 'features')].pytorchvideo(
               model_name='mvit_base_32x3', skip_preprocess=True, topk=5)
           .runas_op['path', 'ground_truth'](func=ground_truth)
           .runas_op['predicts', 'top1'](func=lambda x: x[:1])
@@ -174,7 +174,7 @@ dc = (
     towhee.read_csv('reverse_video_search.csv')
           .set_parallel(5)
           .video_decode.ffmpeg['path', 'frames'](sample_type='uniform_temporal_subsample', args={'num_samples': 16})
-          .video_classification['frames', ('predicts', 'scores', 'features')].pytorchvideo(
+          .action_classification['frames', ('predicts', 'scores', 'features')].pytorchvideo(
               model_name='x3d_m', skip_preprocess=True, topk=5)
 )
 ```
@@ -190,7 +190,7 @@ Towhee supports an `exception-safe` execution mode that allows the pipeline to c
     towhee.glob['path']('./exception/*')
           .exception_safe()
           .video_decode.ffmpeg['path', 'frames'](sample_type='uniform_temporal_subsample', args={'num_samples': 16})
-          .video_classification['frames', ('labels', 'scores', 'vec')].pytorchvideo(
+          .action_classification['frames', ('labels', 'scores', 'vec')].pytorchvideo(
               model_name='x3d_m', skip_preprocess=True)
           .drop_empty()
           .select['path', 'labels']()
@@ -212,7 +212,7 @@ with towhee.api() as api:
     action_classification_function = (
          api.video_decode.ffmpeg(
                 sample_type='uniform_temporal_subsample', args={'num_samples': 32})
-            .video_classification.pytorchvideo(model_name='mvit_base_32x3', skip_preprocess=True, topk=topk)
+            .action_classification.pytorchvideo(model_name='mvit_base_32x3', skip_preprocess=True, topk=topk)
             .runas_op(func=lambda res: {res[0][i]: res[1][i] for i in range(len(res[0]))})
             .as_function()
     )
