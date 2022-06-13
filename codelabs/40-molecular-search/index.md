@@ -12,11 +12,15 @@ Feedback Link: https://github.com/towhee-io/towhee
 
 ## Introduction
 
+duration: 1
+
 Drug discovery, as the source of medical innovation, is an important part of new medicine research and development. Drug discovery is implemented by target selection and confirmation. In order to discover available compounds in the fragment space from billion-scale compound libraries, chemical fingerprint is usually retrieved for substructure search and similarity search.
 
 This example will show you how to find the similar, sub or super molecular formula. Moreover, we managed to make the core functionality as simple as 10 lines of code with Towhee, so that you can start hacking your own molecular search engine.
 
 ## Preparations
+
+duration: 2
 
 ### Install Dependencies
 
@@ -102,6 +106,8 @@ collection = create_milvus_collection('molecular_search', 2048)
 
 ## Load Molecular Fingerprint into Milvus
 
+duration: 2
+
 We first generate fingerprint from SMILES with daylight algorithm and insert the fingerprints into Milvus. Towhee provides a [method-chaining style API](https://towhee.readthedocs.io/en/main/index.html) so that users can assemble a data processing pipeline with operators.
 
 ```python
@@ -132,6 +138,8 @@ Here is detailed explanation for each line of the code:
 `.to_milvus['id', 'fp'](collection=collection, batch=100)`: insert molcular fingerprints in to Milvus;
 
 ## Query Molecular from Milvus with Towhee
+
+duration: 3
 
 Now that fingerprint for candidate SMILES have been inserted into Milvus, we can query across it. Again, we use Towhee to load the input SMILES, compute a fingerprint, and use it as a query in Milvus. Because Milvus only outputs IDs and distance values, we provide the `id_smiles` dictionary to get the original smiles based on IDs and display.
 
@@ -196,6 +204,8 @@ In the following example, the limit is set to 3, but there are less than 3 subst
 
 
 ## Release a Showcase
+
+duration: 2
 
 We've done an excellent job on the core functionality of our molecular search engine. Now it's time to build a showcase with interface. [Gradio](https://gradio.app/) is a great tool for building demos. With Gradio, we simply need to wrap the data processing pipeline via a `search_smiles_with_metric` function:
 

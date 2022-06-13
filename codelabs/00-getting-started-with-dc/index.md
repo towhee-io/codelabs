@@ -12,6 +12,8 @@ Feedback Link: https://github.com/towhee-io/towhee
 
 ## What is DataCollection
 
+duration: 0.5
+
 DataCollection(DC) is a pythonic computation framework for unstructured data in machine learning and data science. It provides a [method-chaining style API](https://towhee.readthedocs.io/en/main/index.html) that makes it easier for a data scientist or researcher to assemble a data processing pipeline.
 
 - Pythonic Method-Chaining Style API: Designed to behave as a python list or iterator, DataCollection is easy to understand for python users and is compatible with most popular data science toolkits. Function/Operator invocations can be chained one after another, making your code clean and fluent.
@@ -19,6 +21,8 @@ DataCollection(DC) is a pythonic computation framework for unstructured data in 
 - Feature-Rich Operator Repository: There are various pre-defined operators On the towhee hub, which cover the most popular deep learning models in computer vision, NLP, and voice processing. Using these operators in the data processing pipeline can significantly accelerate your work.
 
 ## Preparation
+
+duration: 0.5
 
 Before getting started, we need to install the dependencies and download the test data.
 
@@ -40,6 +44,8 @@ $ unzip -q -o dc_test_data.zip
 ```
 
 ## Create a DataCollection
+
+duration: 1
 
 DataCollection is an enhancement to the built-in list in Python. Creating a DataCollection from a list is as simple as:
 
@@ -91,6 +97,8 @@ dc_entity2.show(2)
 ![](./pic/show_entity2.png)
 
 ## Processing data
+
+duration: 3
 
 Then we can apply a function to the elements in a DataCollection can be done with a simple `map()` call:
 
@@ -227,6 +235,8 @@ print('running steamed dc:', dc_streamed.to_list())
 
 ## Towhee Operator
 
+duration: 3
+
 Operators are the basic units of computation that can be applied to the elements within a DataCollection. There are many predefined Operators on the [Towhee hub](https://towhee.io/operators?limit=30&page=1), including popular deep learning models ranging from computer vision to natural language processing.
 
 We can load an Operator from the Towhee hub with the following:
@@ -348,6 +358,8 @@ It is more recommended to use call dispatch in `Data Collection` to run pipeline
 
 ## Tabular Data
 
+duration: 2
+
 In this section we will introduce how to handle structured data with DataCollection. The term tabular refers to structured data that is organized into columns and rows, a widely used format by data scientists and supported by most machine learning toolkits.
 
 ### Creating a DataCollection with a Schema
@@ -413,6 +425,8 @@ dc_entity.runas_op['b', 'd'](func=lambda x: x*2).show()
 ![](./pic/show_func2.png)
 
 ## Advanced Features
+
+duration: 1
 
 DataCollection also support advanced features such as parallel execution and exception execution.
 

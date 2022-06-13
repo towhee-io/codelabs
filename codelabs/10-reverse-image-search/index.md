@@ -12,6 +12,8 @@ Feedback Link: https://github.com/towhee-io/towhee
 
 ## Introduction
 
+duration: 1
+
 This codelab will show you how to build a reverse image search engine using Milvus and Towhee. The basic idea behind semantic reverse image search is the extract embeddings from images using a deep neural network and compare the embeddings with those stored in Milvus.
 
 [Towhee](https://towhee.io/) is a machine learning framework that allows for creating data processing pipelines, and it provides predefined operators which implement insert and query operation in Milvus.
@@ -19,6 +21,8 @@ This codelab will show you how to build a reverse image search engine using Milv
 ![](./pic/workflow.png)
 
 ## Preparation
+
+duration: 2
 
 First we need to prepare the dependencies and dataset, also the Milvus environment.
 
@@ -90,6 +94,8 @@ def create_milvus_collection(collection_name, dim):
 
 ## Load Image Embeddings into Milvus
 
+duration: 2
+
 We first extract embeddings from images with `resnet50` model and insert the embeddings into Milvus for indexing. Towhee provides a [method-chaining style API](https://towhee.readthedocs.io/en/main/index.html) so that users can assemble a data processing pipeline with operators. 
 
 ```python
@@ -122,6 +128,8 @@ Here is detailed explanation for each line of the code:
 
 ## Query Similar Images from Milvus
 
+duration: 2
+
 Now that embeddings for candidate images have been inserted into Milvus, we can query across it for nearest neighbors. Again, we use Towhee to load the input image, compute an embedding vector, and use the vector as a query for Milvus. Because Milvus only outputs image IDs and distance values, we provide a `read_images` function to get the original image based on IDs and display.
 
 ```python
@@ -140,6 +148,8 @@ Now that embeddings for candidate images have been inserted into Milvus, we can 
 
 
 ## Evaluation with Towhee
+
+duration: 3
 
 We have finished the core functionality of the image search engine. However, we don't know whether it achieves a reasonable performance. We need to evaluate the search engine against the ground truth so that we know if there is any room to improve it.
 
@@ -270,6 +280,8 @@ benchmark = (
 By replacing Resnet50 with EfficientNet-B7, the mean HR is raised to 0.878! But the data processing pipeline also gets much slower and takes 28% more time.
 
 ## Release a Showcase
+
+duration: 2
 
 We've done an excellent job on the core functionality of our image search engine. Now it's time to build a showcase with interface. [Gradio](https://gradio.app/) is a great tool for building demos. With Gradio, we simply need to wrap the data processing pipeline via a `search_in_milvus` function:
 

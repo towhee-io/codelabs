@@ -12,6 +12,8 @@ Feedback Link: https://github.com/towhee-io/towhee
 
 ## Introduction
 
+duration: 1
+
 Question answering is a classic problem in the field of natural language processing. While it sounds like an easy problem to solve, there is still a lot of research going on to improve the techniques that we have now. A large part of solving questions is finding questions that are similar to the one being asked.
 
 This example will show you how to find the similar asked question and get the answer. The basic idea behind question answering is to use Towhee to generate embedding from the question dataset and compare the input question with the embedding stored in Milvus.
@@ -20,6 +22,8 @@ This example will show you how to find the similar asked question and get the an
 
 
 ## Preparations
+
+duration: 2
 
 ### Install Dependencies
 
@@ -90,6 +94,8 @@ def create_milvus_collection(collection_name, dim):
 
 ## Load question embedding into Milvus
 
+duration: 2
+
 We first generate embedding from question text with [dpr](https://towhee.io/text-embedding/dpr) operator and insert the embedding into Milvus. Towhee provides a [method-chaining style API](https://towhee.readthedocs.io/en/main/index.html) so that users can assemble a data processing pipeline with operators.
 
 ```bash
@@ -127,6 +133,8 @@ Here is detailed explanation for each line of the code:
 
 ## Ask Question with Milvus and Towhee
 
+duration: 2
+
 Now that embedding for question dataset have been inserted into Milvus, we can ask question with Milvus and Towhee. Again, we use Towhee to load the input question, compute a embedding, and use it as a query in Milvus. Because Milvus only outputs IDs and distance values, we provide the `id_answers` dictionary to get the answers based on IDs and display.
 
 ```
@@ -149,6 +157,8 @@ dc[0]
 'Not generally. There are five states that require most all employers carry short term disability insurance on their employees. These states are: California, Hawaii, New Jersey, New York, and Rhode Island. Besides this mandatory short term disability law, there is no other legislative imperative for someone to purchase or be covered by disability insurance.'
 
 ## Release a Showcase
+
+duration: 2
 
 We've done an excellent job on the core functionality of our question answering engine. Now it's time to build a showcase with interface. [Gradio](https://gradio.app/) is a great tool for building demos. With Gradio, we simply need to wrap the data processing pipeline via a `chat` function:
 

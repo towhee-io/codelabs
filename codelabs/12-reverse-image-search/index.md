@@ -12,6 +12,8 @@ Feedback Link: https://github.com/towhee-io/towhee
 
 ## Introduction
 
+duration: 1
+
 This codelab will show you how to visualize the ANNS (Nearest Neighbor Search) process in reverse image search using [Feder](https://github.com/zilliztech/feder) and [Towhee](https://towhee.io/), Feder is a tool for visualizing ANNS index files, currently it supports the index files from *Faiss* and *Hnswlib*. 
 
 > More information about feder you can learn from "[Visualize Your Approximate Nearest Neighbor Search with Feder](https://zilliz.com/blog/Visualize-Your-Approximate-Nearest-Neighbor-Search-with-Feder)" and "[Visualize Reverse Image Search with Feder](https://zilliz.com/blog/Visualize-Reverse-Image-Search-with-Feder)"
@@ -26,6 +28,8 @@ The process of visualize reverse image search is mainly divided into three steps
 
 
 ## Preparation
+
+duration: 2
 
 - **Install dependencies**
 
@@ -55,6 +59,8 @@ images = towhee.glob('train/*/*.JPEG').to_list()
 ```
 
 ## Visualize reverse image search with Towhee and Feder
+
+duration: 4
 
 - **Generate Image Feature Vector**
 
@@ -179,6 +185,8 @@ hnsw_federPy.searchById(40)
 
 ## Normalize the vector and visualization
 
+duration: 2
+
 In the previous codelab("Build a Milvus Powered Image Search Engine in Minutes") we found that normalizing the vector can improve the accuracy of the reverse image search, so let's take a look about the retrieving process with normalized vectors.
 
 First we extract the feature vector of the image and then normalize the vector.
@@ -217,6 +225,8 @@ hnsw_federPy_norm.searchById(40)
 ```
 
 ## Search with Object Detection
+
+duration: 2
 
 In the previous codelab ("Deep Dive into Real-World Image Search Engine with Towhee"), we know that object detection performs well when retrieving partial data, next we compare the retrieval process with and without object detection.
 
@@ -276,6 +286,8 @@ faiss_feder_norm.searchByVec(vectors_obj[0], images_obj[0]) #Search with object 
 ```
 
 ## Cross-modal Search (Text-Image)
+
+duration: 2
 
 The visualization of cross-modal search is the last and most interesting, it uses towhee [clip Operator](https://towhee.io/towhee/clip) to extract feature vectors of images and text, if the content of the image and text description are similar, their vector distances will also be very close.
 

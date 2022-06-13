@@ -12,6 +12,8 @@ Feedback Link: https://github.com/towhee-io/towhee
 
 ## Introduction
 
+duration: 1
+
 This codelab illustrates how to build a text-video retrieval engine from scratch using [Milvus](https://milvus.io/) and [Towhee](https://towhee.io/).
 
 **What is Text-Video Retrieval?**
@@ -26,6 +28,8 @@ In simple words, text-video retrieval is: given a text query and a pool of candi
 We'll go through video retrieval procedures and evaluate the performance. Moreover, we managed to make the core functionality as simple as few lines of code, with which you can start hacking your own video retrieval engine.
 
 ## Preparation
+
+duration: 2
 
 ### Install Dependencies
 
@@ -175,6 +179,8 @@ collection = create_milvus_collection('text_video_retrieval', 512)
 
 ## Text-Video retrieval
 
+duration: 3
+
 ### Load Video Embeddings into Milvus
 
 We first extract embeddings from images with `CLIP4Clip` model and insert the embeddings into Milvus for indexing. Towhee provides a [method-chaining style API](https://towhee.readthedocs.io/en/main/index.html) so that users can assemble a data processing pipeline with operators.
@@ -247,6 +253,8 @@ dc.select['video_id', 'sentence', 'ground_truth', 'top10_raw_res', 'top1', 'top5
 
 ## Evaluation
 
+duration: 2
+
 We have finished the core functionality of the text-video retrieval engine. However, we don't know whether it achieves a reasonable performance. We need to evaluate the retrieval engine against the ground truth so that we know if there is any room to improve it.
 
 In this section, we'll evaluate the strength of our text-video retrieval using recall@topk:
@@ -267,6 +275,8 @@ benchmark = (
 This result is almost identical to the recall metrics represented in the paper. You can find more detail about metrics in [paperwithcode](https://paperswithcode.com/paper/clip4clip-an-empirical-study-of-clip-for-end/review/?hl=30331).
 
 ## Release a Showcase
+
+duration: 2
 
 We've learnt how to build a reverse video search engine. Now it's time to add some interface and release a showcase. Towhee provides `towhee.api()` to wrap the data processing pipeline as a function with `.as_function()`. So we can build a quick demo with this `milvus_search_function` with [Gradio](https://gradio.app/).
 

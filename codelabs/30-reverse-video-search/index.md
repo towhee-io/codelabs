@@ -12,6 +12,8 @@ Feedback Link: https://github.com/towhee-io/towhee
 
 ## Introduction
 
+duration: 1
+
 This codelab will show how to build a reverse-video-search engine from scratch using [Milvus](https://milvus.io/) and [Towhee](https://towhee.io/). We will go through the procedure of building a reverse-video-search engine and evaluate its performance.
 
 **What is Reverse Video Search?**
@@ -26,6 +28,8 @@ Reverse video search is similar like [reverse image search](https://en.wikipedia
 - Towhee is a framework that provides ETL for unstructured data using SoTA machine learning models.
 
 ## Preparation
+
+duration: 1
 
 ### Install packages
 
@@ -114,6 +118,8 @@ def create_milvus_collection(collection_name, dim):
 
 ## Load Video Embeddings into Milvus
 
+duration: 2
+
 We first generate embeddings for videos with [X3D model](https://arxiv.org/abs/2004.04730) and then insert video embeddings into Milvus. Towhee provides a [method-chaining style API](https://towhee.readthedocs.io/en/main/index.html) so that users can assemble a data processing pipeline with operators.
 
 ```python
@@ -142,6 +148,8 @@ Here are some details for each line of the assemble pipeline:
 - `.to_milvus['id', 'features']()`: insert video embedding into Milvus collection
 
 ## Query Similar Videos from Milvus
+
+duration: 2
 
 Now all embeddings of candidate videos have been inserted into Milvus collection, we can query embeddings across the collection for nearest neighbors.
 
@@ -211,6 +219,8 @@ Top 3 search results:
 
 ## Evaluation
 
+duration: 1
+
 We have just built a reverse video search engine. But how's its performance? We can evaluate the search engine against the ground truths.
 
 In this section, we'll measure the performance with 2 metrics - mHR and mAP:
@@ -240,6 +250,8 @@ benchmark = (
 ![](./pic/metric1.png)
 
 ## Optimization
+
+duration: 3
 
 We can see from above evaluation report, the current performance is not satisfactory. What can we do to improve the search engine? Of course we can fine-tune deep learning network with our own train data. Using more types of embeddings or filters by video tags/description/captions and audio can definitely enhance the search engine as well. But in this tutorial, I will just recommend some very simple options to make improvements.
 
@@ -316,6 +328,8 @@ benchmark = (
 Switching to MVIT model increases the mHR to 0.79 and mAP to 0.86, which are much better than X3D model. However, both insert and search time have increased. It's time for you to make trade-off between latency and accuracy. You're always encouraged to play around with this tutorial.
 
 ## Release a Showcase
+
+duration: 2
 
 We've learnt how to build a reverse video search engine. Now it's time to add some interface and release a showcase. Towhee provides `towhee.api()` to wrap the data processing pipeline as a function with `.as_function()`. So we can build a quick demo with this `milvus_search_function` with [Gradio](https://gradio.app/).
 
