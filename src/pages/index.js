@@ -1,5 +1,5 @@
 import Layout from '../components/layout';
-import { useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import TabList from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
@@ -8,17 +8,22 @@ import Stack from '@mui/material/Stack';
 import TutorialCard from '../components/card';
 import classes from '../../styles/home.module.less';
 import ToolBar from '../components/toolBar';
-import { useRouter } from 'next/router';
+import { useRouter, default as Router } from 'next/router';
 import { getCodelabsJson } from '../utils/common';
+import * as qs from 'qs';
 
 export default function HomePage({ data = [] }) {
-  const { pathname } = useRouter();
-  const [keyWord, setKeyWord] = useState('');
-  const [categoryVal, setCategoryVal] = useState('all');
-  const [sortWay, setSortWay] = useState('a-z');
+  const { query } = useRouter();
+  const { s = '', c = 'all', sort = 'a-z' } = query;
 
   const handleChange = (e, value) => {
-    setSortWay(value);
+    query.sort = value;
+    if (value === '') {
+      delete query.sort;
+    }
+    let q = qs.stringify(query);
+
+    Router.push(`/?${q}`);
   };
 
   const categoryOptions = useMemo(() => {
@@ -45,25 +50,35 @@ export default function HomePage({ data = [] }) {
   }, [data]);
 
   const handleSearchChange = e => {
-    setKeyWord(e.target.value);
+    query.s = e.target.value;
+    if (e.target.value === '') {
+      delete query.s;
+    }
+    let q = qs.stringify(query);
+
+    Router.push(`/?${q}`);
   };
 
   const handleSelectorChange = e => {
-    setCategoryVal(e.target.value);
+    query.c = e.target.value;
+    if (e.target.value === 'all') {
+      delete query.c;
+    }
+    let q = qs.stringify(query);
+
+    Router.push(`/?${q}`);
   };
 
   const formatData = useMemo(() => {
     let tempData = data.slice();
-    if (keyWord) {
-      tempData = tempData.filter(({ title }) => title.includes(keyWord));
+    if (s) {
+      tempData = tempData.filter(({ title }) => title.includes(s));
     }
 
-    if (categoryVal !== 'all') {
-      tempData = tempData.filter(({ category }) =>
-        category.includes(categoryVal)
-      );
+    if (c !== 'all') {
+      tempData = tempData.filter(({ category }) => category.includes(c));
     }
-    switch (sortWay) {
+    switch (sort) {
       case 'a-z':
         return tempData.sort(
           (x, y) => x.title.charCodeAt(0) - y.title.charCodeAt(0)
@@ -75,8 +90,11 @@ export default function HomePage({ data = [] }) {
         );
       case 'duration':
         return tempData.sort((x, y) => x.duration - y.duration);
+
+      default:
+        return tempData;
     }
-  }, [data, sortWay, keyWord, categoryVal]);
+  }, [data, sort, s, c]);
 
   return (
     <Layout>
@@ -90,8 +108,8 @@ export default function HomePage({ data = [] }) {
                 integration experience. Most tutorials will step you through the
                 process of the unstructured data, such as reverse image search,
                 reverse video search, audio classification, question and answer
-                systems, molecular search, etc. Most of the bootcamp can be found
-                at https://github.com/towhee-io/examples.
+                systems, molecular search, etc. Most of the bootcamp can be
+                found at https://github.com/towhee-io/examples.
               </Typography>
             </Box>
           </Box>
@@ -104,7 +122,7 @@ export default function HomePage({ data = [] }) {
               alignItems="center"
             >
               <TabList
-                value={sortWay}
+                value={sort}
                 onChange={handleChange}
                 className={classes.tabBar}
               >
@@ -114,9 +132,9 @@ export default function HomePage({ data = [] }) {
               </TabList>
 
               <ToolBar
-                keyWord={keyWord}
+                keyWord={s}
                 handleKeyWordChange={handleSearchChange}
-                categoryVal={categoryVal}
+                categoryVal={c}
                 handleSelectorChange={handleSelectorChange}
                 options={categoryOptions}
               />

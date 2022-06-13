@@ -49,8 +49,8 @@ export default function ToolBar(props) {
       <Typography component="div" className={classes.selectorWrapper}>
         <Select
           displayEmpty
-          defaultValue={options[0].value}
-          value={categoryVal.value}
+          defaultValue={categoryVal}
+          value={categoryVal}
           onChange={handleSelectorChange}
           input={<OutlinedInput />}
           placeholder="Category"
