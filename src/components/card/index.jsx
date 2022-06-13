@@ -1,4 +1,4 @@
-import Link from 'next/Link';
+import Link from 'next/link';
 import { format } from 'date-fns';
 import classes from './index.module.less';
 
