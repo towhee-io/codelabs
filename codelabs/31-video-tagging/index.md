@@ -12,11 +12,15 @@ Feedback Link: https://github.com/towhee-io/towhee
 
 ## Introduction
 
+duration: 0.5
+
 Video tagging means adding proper tags for videos. Tags can be various from different aspects. For example, object detection, action recognition, place identification can all contribute to video tagging.
 
 This codelab will show you how to build a basic video classification system with sample data (of 20 human activities), visualize predicted labels, and measure the system with performance metrics. Moreover, you can try optimization methods for accuracy and efficiency. At the end, you are able to build up a playable video classification system with 5 lines of code.
 
 ## Preparation
+
+duration: 1
 
 ### Install Dependencies
 
@@ -75,6 +79,8 @@ def read_images(results):
 
 ## Predict labels
 
+duration: 2
+
 Let's take some 'tap_dancing' videos as example to see how to predict labels for videos within 5 lines. By default, the system will predict top 5 labels sorting by scores (of possibility) from high to low. You can control the number of labels returnbed by change `topk`. Please note that the first time run will take some time to download model.
 
 ```python
@@ -100,6 +106,8 @@ Here are some details for each line of the assemble pipeline:
 - `.action_classification.pytorchvideo()`: an embeded Towhee operator applying specified model to video frames, which can be used to predict labels and extract features for video. [learn more](https://towhee.io/action-classification/pytorchvideo)
 
 ## Evaluation
+
+duration: 1
 
 We have just showed how to classify video, but how's its performance? Towhee has provided different options for metrics to evaluate predicted results against ground truths.
 
@@ -138,6 +146,8 @@ benchmark = (
 
 ## Optimization
 
+duration: 2
+
 You're always encouraged to play around with the tutorial. We present some optimization options here to make improvements in accuracy, latency, and resource usage. With these methods, you can make the classification system better in performance and more feasible in production.
 
 ### Change model
@@ -164,6 +174,8 @@ benchmark = (
 ![](./pic/metric2.png)
 
 ## Deploy with parallel and exception safe
+
+duration: 2
 
 ### Parallel Execution
 
@@ -201,6 +213,8 @@ Towhee supports an `exception-safe` execution mode that allows the pipeline to c
 ![](./pic/exception_search.png)
 
 ## Release a Showcase
+
+duration: 2
 
 We've learnt how to build a reverse video search engine. Now it's time to add some interface and release a showcase. Towhee provides `towhee.api()` to wrap the data processing pipeline as a function with `.as_function()`. So we can build a quick demo with this `action_classification_function` with [Gradio](https://gradio.app/).
 

@@ -12,6 +12,8 @@ Feedback Link: https://github.com/towhee-io/towhee
 
 ## Introduction
 
+duration: 1
+
 This codelab will show how to build an text-image search engine with Towhee and Milvus, which means search for matched or related images with the input text.
 
 The basic idea behind our text-image search is the extract embeddings from images and texts using a deep neural network and compare the embeddings with those stored in Milvus. Then to use [Towhee](https://towhee.io/), a machine learning framework that allows for creating data processing pipelines, and it also provides predefined operators which implement insert and query operation in Milvus.
@@ -19,6 +21,8 @@ The basic idea behind our text-image search is the extract embeddings from image
 ![](./pic/workflow.png)
 
 ## Preparation
+
+duration: 2
 
 ### Install Dependencies
 
@@ -107,6 +111,8 @@ collection = create_milvus_collection('text_image_search', 512)
 
 ## Generate image and text embeddings with CLIP
 
+duration: 2
+
 [CLIP](https://openai.com/blog/clip/) Operator can be used generate embeddings for text and image by jointly training an image encoder and text encoder to maximize the cosine similarity.
 
 ```python
@@ -141,6 +147,8 @@ Here is detailed explanation of the code:
 
 ## Load Image Embeddings into Milvus
 
+duration: 2
+
 We first extract embeddings from images with `clip_vit_32` model and insert the embeddings into Milvus for indexing. Towhee provides a [method-chaining style API](https://towhee.readthedocs.io/en/main/index.html) so that users can assemble a data processing pipeline with operators.
 
 Here is detailed explanation for other apis of the code:
@@ -168,6 +176,8 @@ Total number of inserted data is 1000.
 
 ## Query Matched Images from Milvus
 
+duration: 2
+
 Now that embeddings for candidate images have been inserted into Milvus, we can query across it for nearest neighbors. Again, we use Towhee to load the input Text, compute an embedding vector, and use the vector as a query for Milvus. Because Milvus only outputs image IDs and distance values, we provide a `read_images` function to get the original image based on IDs and display.
 
 ```python
@@ -185,6 +195,8 @@ Now that embeddings for candidate images have been inserted into Milvus, we can 
 ![](./pic/search.png)
 
 ## Release a Showcase
+
+duration: 2
 
 We've done an excellent job on the core functionality of our text-image search engine. Now it's time to build a showcase with interface. [Gradio](https://gradio.app/) is a great tool for building demos. With Gradio, we simply need to wrap the data processing pipeline via a `search_in_milvus` function:
 
