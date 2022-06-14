@@ -7,8 +7,8 @@ const DEFAULT_PDF_SETTINGS = {
   date: new Date().toLocaleDateString(),
   titlepage: true,
   'titlepage-color': 'fbfbee',
-  'titlepage-text-color': 'FFFFFF',
-  'titlepage-rule-color': 'FFFFFF',
+  'titlepage-text-color': '000000',
+  'titlepage-rule-color': '000000',
 };
 // get all codelab.json from claat generated files
 const mdFiles = glob.sync(`${CODELABS_DIR}/*/index.md`);
