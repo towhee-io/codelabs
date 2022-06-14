@@ -33,7 +33,7 @@ export default function TutorialCard(props) {
       </Link>
       <div className={classes.bottomContainer}>
         <span className={classes.tag}>
-          <Link href={`#`}>{mainCategory}</Link>
+          <Link href={`/?c=${mainCategory}`}>{mainCategory}</Link>
         </span>
         <span className={classes.duration}>{duration} mins to read</span>
         <span className={classes.pdfLink}>
