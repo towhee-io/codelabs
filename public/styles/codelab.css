@@ -1,0 +1,43 @@
+google-codelab-step {
+  font-weight: 400;
+}
+google-codelab-step pre, google-codelab-step code {
+  font-family: "Roboto Mono" 
+}
+google-codelab-step pre {
+  background: #f1f3f4;
+  border-radius: 0;
+  font-size: 14px;
+  line-height: 20px;
+  margin: 16px 0;
+  overflow-x: auto;
+  padding: 8px 80px 8px 8px;
+  position: relative;
+}
+google-codelab-step pre .kwd,
+google-codelab-step code .kwd {
+  color: #1967d2;
+}
+google-codelab-step pre .pln,
+google-codelab-step code .pln {
+  color: #37474f;
+}
+
+google-codelab-step pre .pun,
+google-codelab-step code .pun {
+  color: #37474f;
+}
+google-codelab-step pre .com,
+google-codelab-step code .com {
+  color: #37474f;
+}
+
+google-codelab-step pre .typ,
+google-codelab-step code .typ {
+  color: #9334e6;
+}
+
+google-codelab-step pre .str,
+google-codelab-step code .str {
+  color: #188038;
+}

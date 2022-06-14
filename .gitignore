@@ -37,6 +37,7 @@ codelab.json
 
 public/*
 !public/images
+!public/styles
 !public/favicon.png
 public/images/*
 !public/images/milvus.svg
