@@ -10,10 +10,10 @@ for f in $(find . -name '*.md'); do
   if [ -f "$f" ]; then
     # mac os, please download
     if [ "$(uname)" == "Darwin" ]; then
-      ../bin/claat-darwin-amd64 export -ga UA-142992812-1 -o ../public $f || echo "next file..."
+      ../bin/claat-darwin-amd64 export -ga G-0JXY6PQLWQ -o ../public $f || echo "next file..."
     # linux (included in the repo)
     elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
-      ../bin/claat-linux-amd64 export -ga UA-142992812-1 -o ../public $f || echo "next file..."
+      ../bin/claat-linux-amd64 export -ga G-0JXY6PQLWQ -o ../public $f || echo "next file..."
     fi
   fi
 done
