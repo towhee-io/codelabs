@@ -3,10 +3,10 @@ const glob = require('glob');
 
 const CODELABS_DIR = 'codelabs';
 const DEFAULT_PDF_SETTINGS = {
-  author: '"@Milvus.io"',
+  author: '"@Towhee.io"',
   date: new Date().toLocaleDateString(),
   titlepage: true,
-  'titlepage-color': '175FFF',
+  'titlepage-color': 'fbfbee',
   'titlepage-text-color': 'FFFFFF',
   'titlepage-rule-color': 'FFFFFF',
 };
