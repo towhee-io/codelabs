@@ -5,7 +5,7 @@ on:
 
 jobs:
   build-and-gen-pdf:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-18.04
     steps:
       - name: 'Checkout Github Action'
         uses: actions/checkout@master
