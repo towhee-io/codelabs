@@ -1,14 +1,14 @@
 export const NAV_LIST = [
   {
-    label: "Pipelines",
-    href: "https://towhee.io/pipelines",
-  },
-  {
     label: "Operators",
-    href: "https://towhee.io/operators",
+    href: "https://towhee.io/tasks/operator",
   },
   {
     label: "Documentation",
     href: "https://docs.towhee.io/",
+  },
+  {
+    label: "Bootcamp",
+    href: "https://codelabs.towhee.io/",
   },
 ];
