@@ -28,22 +28,22 @@ export default function TowheeFooter() {
                 </a>
               </li>
               <li>
-                <a rel="noreferrer" href="https://towhee.io/pipelines">
-                  Pipelines
+                <a rel="noreferrer" href="https://towhee.io/tasks/operator">
+                  Operators
                 </a>
               </li>
               <li>
-                <a rel="noreferrer" href="https://towhee.io/operators">
-                  Operators
+                <a rel="noreferrer" href="https://docs.towhee.io/">
+                  Documentation
                 </a>
               </li>
               <li>
                 <a
                   rel="noreferrer"
-                  href="https://docs.towhee.io/"
+                  href="https://codelabs.towhee.io/"
                   target="_blank"
                 >
-                  Documentation
+                  Bootcamp
                 </a>
               </li>
             </ul>
