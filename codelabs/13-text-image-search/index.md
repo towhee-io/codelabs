@@ -120,7 +120,7 @@ import towhee
 
 towhee.glob['path']('./teddy.png') \
       .image_decode['path', 'img']() \
-      .towhee.clip['img', 'vec'](model_name='clip_vit_b32', modality='image') \
+      .image_text_embedding.clip['img', 'vec'](model_name='clip_vit_b32', modality='image') \
       .tensor_normalize['vec','vec']() \
       .select['img', 'vec']() \
       .show()
@@ -132,7 +132,7 @@ And we can set the parameter `modality='text'` to get the text embedding:
 
 ```python
 towhee.dc['text'](["A teddybear on a skateboard in Times Square."]) \
-      .towhee.clip['text','vec'](model_name='clip_vit_b32', modality='text') \
+      .image_text_embedding.clip['text','vec'](model_name='clip_vit_b32', modality='text') \
       .tensor_normalize['vec','vec']() \
       .select['text', 'vec']() \
       .show()
@@ -143,7 +143,7 @@ towhee.dc['text'](["A teddybear on a skateboard in Times Square."]) \
 Here is detailed explanation of the code:
 
 - `.image_decode['path', 'img']()`: for each row from the data, read and decode the image at `path` and put the pixel data into column `img`;
-- `.towhee.clip['img', 'vec'](model_name='clip_vit_b32',modality='image'/'text')`: extract image or text embedding feature with `towhee.clip`, an operator from the [Towhee hub](https://towhee.io/towhee/clip) . This operator supports seveal models including `clip_resnet_r50`,`clip_resnet_r101`,`clip_vit_b32`,`clip_vit_b16`,etc.
+- `.image_text_embedding.clip['img', 'vec'](model_name='clip_vit_b32',modality='image'/'text')`: extract image or text embedding feature with `image_text_embedding.clip`, an operator from the [Towhee hub](https://towhee.io/towhee/clip) . This operator supports seveal models including `clip_resnet_r50`,`clip_resnet_r101`,`clip_vit_b32`,`clip_vit_b16`,etc.
 
 ## Load Image Embeddings into Milvus
 
@@ -165,7 +165,7 @@ dc = (
       .runas_op['id', 'id'](func=lambda x: int(x))
       .set_parallel(4)
       .image_decode['path', 'img']()
-      .towhee.clip['img', 'vec'](model_name='clip_vit_b32', modality='image')
+      .image_text_embedding.clip['img', 'vec'](model_name='clip_vit_b32', modality='image')
       .tensor_normalize['vec','vec']()
       .to_milvus['id', 'vec'](collection=collection, batch=100)
 )
@@ -183,7 +183,7 @@ Now that embeddings for candidate images have been inserted into Milvus, we can 
 ```python
 (
     towhee.dc['text'](["A white dog","A black dog"])
-      .towhee.clip['text', 'vec'](model_name='clip_vit_b32', modality='text')
+      .image_text_embedding.clip['text', 'vec'](model_name='clip_vit_b32', modality='text')
       .tensor_normalize['vec','vec']()
       .milvus_search['vec', 'result'](collection=collection, limit=5)
       .runas_op['result', 'result_img'](func=read_images)
@@ -203,7 +203,7 @@ We've done an excellent job on the core functionality of our text-image search e
 ```python
 with towhee.api() as api:
     milvus_search_function = (
-        api.towhee.clip(model_name='clip_vit_b32',modality='text')
+        api.image_text_embedding.clip(model_name='clip_vit_b32',modality='text')
             .tensor_normalize()
             .milvus_search(collection='text_image_search', limit=5)
             .runas_op(func=lambda res: [id_img[x.id] for x in res])
