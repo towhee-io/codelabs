@@ -177,6 +177,7 @@ Now, let's try using a transformer-based model. We'll first initialize the embed
 ```
 import torch
 from transformers import ViTFeatureExtractor, ViTModel
+from towhee.types.image_utils import to_image_color
 
 feature_extractor = ViTFeatureExtractor.from_pretrained('google/vit-large-patch32-384')
 model = ViTModel.from_pretrained('google/vit-large-patch32-384')
@@ -185,7 +186,7 @@ model.to(device)
 
 
 def vit_embedding(img):
-    img = img.cv2_to_rgb()
+    img = to_image_color(img, 'RGB')
     inputs = feature_extractor(img, return_tensors="pt")
     outputs = model(inputs['pixel_values'].to(device))
     return outputs.pooler_output.detach().cpu().numpy().flatten()
