@@ -8,7 +8,7 @@ Feedback Link: https://github.com/towhee-io/towhee
 
 ---
 
-# Build a Molecular Search Engine in Minutes
+# Molecular Search by Structure or Substructure
 
 ## Introduction
 

@@ -8,7 +8,7 @@ Feedback Link: https://github.com/towhee-io/towhee
 
 ---
 
-# Visualize Nearest Neighbor Search on Reverse Image Search
+# Reverse Image Search III: Visualize Nearest Neighbor Search
 
 ## Introduction
 

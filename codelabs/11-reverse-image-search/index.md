@@ -8,7 +8,7 @@ Feedback Link: https://github.com/towhee-io/towhee
 
 ---
 
-# Deep Dive into Reverse Image Search Engine with Towhee
+# Reverse Image Search II: Deep Dive with Towhee
 
 In the previous "Build a Reverse Image Search Engine in Minutes" codelab, we built and prototyped a proof-of-concept reverse image search engine. Now, let's optimize our algorithm, feed it with large-scale image datasets, and deploy it as a micro-service with Towhee.
 

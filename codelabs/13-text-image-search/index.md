@@ -8,7 +8,7 @@ Feedback Link: https://github.com/towhee-io/towhee
 
 ---
 
-# Build a Text-Image Search Engine in Minutes
+# Search Image by Description
 
 ## Introduction
 
