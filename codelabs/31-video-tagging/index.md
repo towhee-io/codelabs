@@ -8,7 +8,7 @@ Feedback Link: https://github.com/towhee-io/towhee
 
 ---
 
-# Build a Video Classification System in 5 Lines
+# Video Classification: Recognize Actions in 5 Lines
 
 ## Introduction
 

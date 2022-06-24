@@ -8,7 +8,7 @@ Feedback Link: https://github.com/towhee-io/towhee
 
 ---
 
-# Build a Reverse Video Search Engine in minutes
+# Reverse Video Search: Find Similar Videos
 
 ## Introduction
 
