@@ -3,7 +3,7 @@ id: build-a-qusetion-answering-engine-in-minutes
 categories: NLP
 tags: question-answering
 status: Published
-authors: Shiyu
+authors: Shiyu & Kaiyuan
 Feedback Link: https://github.com/towhee-io/towhee
 
 ---

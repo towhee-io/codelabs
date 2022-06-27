@@ -1,6 +1,6 @@
 summary: Getting Started with Towhee - Introduction to DataCollection
 id: getting-started-with-towhee-introduction-to-datacollection
-categories: Getting Started
+categories: Getting-Started
 tags: DataCollection
 status: Published
 authors: Shiyu
