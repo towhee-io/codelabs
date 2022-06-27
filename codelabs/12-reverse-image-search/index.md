@@ -3,7 +3,7 @@ id: visualize-nearest-neighbor-search-on-reverse-image-search
 categories: Image
 tags: reverse-image-search
 status: Published
-authors: Shiyu
+authors: Shiyu & Houjie
 Feedback Link: https://github.com/towhee-io/towhee
 
 ---

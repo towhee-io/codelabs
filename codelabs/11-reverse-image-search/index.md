@@ -3,7 +3,7 @@ id: deep-dive-into-reverse-image-search-with-towhee
 categories: Image
 tags: reverse-image-search
 status: Published
-authors: Shiyu
+authors: Shiyu & Houjie
 Feedback Link: https://github.com/towhee-io/towhee
 
 ---
