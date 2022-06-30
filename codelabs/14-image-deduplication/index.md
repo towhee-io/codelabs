@@ -1,4 +1,4 @@
-summary: Build a Imgae-Deduplication Engine in Minutes
+summary: Build an Image-Deduplication Engine in Minutes
 id: build-a-image-deduplication-engine-in-minutes
 categories: Image
 tags: test-image-deduplication
