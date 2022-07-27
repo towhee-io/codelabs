@@ -4,11 +4,9 @@ const glob = require('glob');
 const CODELABS_DIR = 'codelabs';
 const DEFAULT_PDF_SETTINGS = {
   author: '"@Towhee.io"',
-  date: new Date().toLocaleDateString(),
   titlepage: true,
   'titlepage-color': 'fbfbee',
   'titlepage-text-color': '000000',
-  'titlepage-rule-color': '000000',
   'titlepage-background': '../scripts/cover.pdf'
 };
 // get all codelab.json from claat generated files
