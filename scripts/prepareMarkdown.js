@@ -5,6 +5,7 @@ const CODELABS_DIR = 'codelabs';
 const DEFAULT_PDF_SETTINGS = {
   author: '"@Towhee.io"',
   titlepage: true,
+  'titlepage-rule-height': '0',
   'titlepage-background': '../scripts/cover.pdf'
 };
 // get all codelab.json from claat generated files
