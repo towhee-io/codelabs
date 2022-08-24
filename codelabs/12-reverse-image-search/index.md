@@ -14,7 +14,7 @@ Feedback Link: https://github.com/towhee-io/towhee
 
 duration: 1
 
-This codelab will show you how to visualize the ANNS (Nearest Neighbor Search) process in reverse image search using [Feder](https://github.com/zilliztech/feder) and [Towhee](https://towhee.io/), Feder is a tool for visualizing ANNS index files, currently it supports the index files from *Faiss* and *Hnswlib*. 
+This codelab will show you how to visualize the ANNS (Nearest Neighbor Search) process in reverse image search using [Feder](https://github.com/zilliztech/feder) and [Towhee](https://towhee.io/), Feder is a tool for visualizing ANNS index files, currently it supports the index files from *Faiss* and *Hnswlib*. More details you can refer to the [notebook](https://github.com/towhee-io/examples/tree/0.7/image/reverse_image_search).
 
 > More information about feder you can learn from "[Visualize Your Approximate Nearest Neighbor Search with Feder](https://zilliz.com/blog/Visualize-Your-Approximate-Nearest-Neighbor-Search-with-Feder)" and "[Visualize Reverse Image Search with Feder](https://zilliz.com/blog/Visualize-Reverse-Image-Search-with-Feder)"
 
