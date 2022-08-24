@@ -14,7 +14,7 @@ Feedback Link: https://github.com/towhee-io/towhee
 
 duration: 1
 
-This codelab will show you how to build a reverse image search engine using Milvus and Towhee. The basic idea behind semantic reverse image search is the extract embeddings from images using a deep neural network and compare the embeddings with those stored in Milvus.
+This codelab will show you how to build a reverse image search engine using Milvus and Towhee. The basic idea behind semantic reverse image search is the extract embeddings from images using a deep neural network and compare the embeddings with those stored in Milvus. More details you can refer to the [notebook](https://github.com/towhee-io/examples/tree/0.7/image/reverse_image_search).
 
 [Towhee](https://towhee.io/) is a machine learning framework that allows for creating data processing pipelines, and it provides predefined operators which implement insert and query operation in Milvus.
 
@@ -60,6 +60,36 @@ df.head()
 ```
 
 ![](./pic/show_data.png)
+
+To use the dataset for image search, let's first define some helper functions:
+
+- **read_images(results)**: read images by image IDs;
+- **ground_truth(path)**: ground-truth for each query image, which is used for calculating mHR(mean hit ratio) and mAP(mean average precision);
+
+```python
+import cv2
+import pandas as pd
+from towhee._types.image import Image
+
+df = pd.read_csv('reverse_image_search.csv')
+df.head()
+
+id_img = df.set_index('id')['path'].to_dict()
+label_ids = {}
+for label in set(df['label']):
+    label_ids[label] = list(df[df['label']==label].id)
+
+def read_images(results):
+    imgs = []
+    for re in results:
+        path = id_img[re.id]
+        imgs.append(Image(cv2.imread(path), 'BGR'))
+    return imgs
+
+def ground_truth(path):
+    label = path.split('/')[-2]
+    return label_ids[label]
+```
 
 
 ### Create a Milvus Collection
