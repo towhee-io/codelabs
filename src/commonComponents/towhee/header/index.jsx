@@ -1,16 +1,18 @@
 import Link from '@mui/material/Link';
 import { NAV_LIST } from './constants';
-import GitHubButton from 'react-github-btn';
 import MenuIcon from '@mui/icons-material/Menu';
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import classes from './index.module.less';
 import clsx from 'clsx';
 import { TohiLogo } from '../footer/icons';
+import { getGithubStatis } from '../http';
+import GitHubButton from '../githubButton';
 
 const Header = () => {
   const content = useRef(null);
 
   const [openMask, setOPenMask] = useState(false);
+  const [stat, setStat] = useState({ star: 0, forks: 0 });
 
   const handleToggleMobileMenu = () => {
     setOPenMask(v => !v);
@@ -28,14 +30,21 @@ const Header = () => {
         [styles.desktopNav]: isDeskTop,
       })}
     >
-      <li key="github">
+      <li key="github" className={classes.gitBtnsWrapper}>
         <GitHubButton
-          href="https://github.com/towhee-io/towhee"
-          data-size="large"
-          data-show-count="true"
-          aria-label="Star towhee-io/towhee on GitHub"
+          stat={stat}
+          type="star"
+          href="https://github.com/milvus-io/milvus"
         >
           Star
+        </GitHubButton>
+
+        <GitHubButton
+          stat={stat}
+          type="fork"
+          href="https://github.com/milvus-io/milvus/fork"
+        >
+          Forks
         </GitHubButton>
       </li>
       {navList.map(v => (
@@ -47,6 +56,17 @@ const Header = () => {
       ))}
     </ul>
   );
+
+  useEffect(() => {
+    (async function getData() {
+      try {
+        const { stargazers_count, forks_count } = await getGithubStatis();
+        setStat({ star: stargazers_count, forks: forks_count });
+      } catch (error) {
+        console.log(error);
+      }
+    })();
+  }, []);
 
   return (
     <section className={classes.headerWrapper}>
