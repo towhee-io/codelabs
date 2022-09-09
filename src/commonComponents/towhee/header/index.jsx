@@ -38,14 +38,6 @@ const Header = () => {
         >
           Star
         </GitHubButton>
-
-        <GitHubButton
-          stat={stat}
-          type="fork"
-          href="https://github.com/towhee-io/towhee"
-        >
-          Forks
-        </GitHubButton>
       </li>
       {navList.map(v => (
         <li key={v.label}>
