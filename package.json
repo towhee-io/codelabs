@@ -3,9 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev-milvus": "node generate.js --env milvus && next dev",
-    "dev-tohi": "node generate.js --env towhee && next dev",
-    "build": "node generate.js --env towhee && next build && next export",
+    "dev": "next dev",
+    "build": " next build && next export",
     "start": "next start",
     "lint": "next lint"
   },
