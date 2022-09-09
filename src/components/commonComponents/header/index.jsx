@@ -42,7 +42,7 @@ const Header = () => {
         <GitHubButton
           stat={stat}
           type="fork"
-          href="https://github.com/towhee-io/towhee/fork"
+          href="https://github.com/towhee-io/towhee"
         >
           Forks
         </GitHubButton>
