@@ -34,17 +34,9 @@ const Header = () => {
         <GitHubButton
           stat={stat}
           type="star"
-          href="https://github.com/milvus-io/milvus"
+          href="https://github.com/towhee-io/towhee"
         >
           Star
-        </GitHubButton>
-
-        <GitHubButton
-          stat={stat}
-          type="fork"
-          href="https://github.com/milvus-io/milvus/fork"
-        >
-          Forks
         </GitHubButton>
       </li>
       {navList.map(v => (
