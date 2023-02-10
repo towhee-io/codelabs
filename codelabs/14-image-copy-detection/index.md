@@ -31,15 +31,19 @@ A generic embedding model turns images into dense vectors; an encoder-based embe
 To accomplish this, these encoder models shouldn't be trained on traditional image recognition/localization datasets such as CIFAR or ImageNet; instead, a siamese network trained with contrastive or triplet loss must be used. Among all these encoder-based embedding models, `resnet` is a widely applied one. In this tutorial, we take `resnet50` as an example to show Towhee's capability of comparing similar images in a few lines of code with image-processing operators and pre-built embedding models:
 
 ```python
-from towhee import dc
+from towhee.dc2 import pipe, ops
+from towhee.datacollection import DataCollection
 
-dc_1 = dc['path_1', 'path_2']([['Lenna.png', 'Lenna.png'], ['Lenna.png', 'logo.png']])\
-    .image_decode['path_1', 'img_1']()\
-    .image_decode['path_2', 'img_2']()\
-    .image_embedding.timm['img_1', 'emb_1'](model_name='resnet50')\
-    .image_embedding.timm['img_2', 'emb_2'](model_name='resnet50')
+emb_pipe = (
+    pipe.input('target', 'path')
+        .flat_map('path', 'path', lambda x: x)
+        .map('target', 'target', ops.image_decode.cv2('rgb'))
+        .map('path', 'image', ops.image_decode.cv2('rgb'))
+        .map('target', 'target_emb', ops.image_embedding.timm(model_name='resnet50'))
+        .map('image', 'emb', ops.image_embedding.timm(model_name='resnet50'))
+)
 
-dc_1.show()
+emb_res = emb_pipe.output('target', 'image', 'path', 'emb', 'target_emb')
 ```
 ![](./pic/emb.png)
 
@@ -61,10 +65,15 @@ Towhee also support runnig a self-defined function as operator with `runas_op`, 
 
 ```python
 import numpy as np
+
 thresh = 0.01
-dc_1.runas_op[('emb_1', 'emb_2'), 'is_sim'](lambda x, y: np.linalg.norm(x - y) < thresh)\
-    .select['is_sim']()\
-	.show()
+detect_res = (
+    emb_pipe.map(('emb', 'target_emb'), 'is_similar', lambda x, y: np.linalg.norm(x - y) < thresh)
+        .output('target', 'image', 'is_similar')
+)
+
+res = detect_res('lena.png', ['lena.png', 'towhee_logo.png'])
+DataCollection(res).show()
 ```
 ![](./pic/res.png)
 
@@ -77,17 +86,24 @@ duration: 1
 Putting it all together, we can check if two images are duplicate with the following code snippet:
 
 ```python
-from towhee import dc
 import numpy as np
+from towhee.dc2 import pipe, ops
+from towhee.datacollection import DataCollection
 
 thresh = 0.01
-res = dc['path_1', 'path_2']([['path/to/image/1', 'path/to/image/2']])\
-    .image_decode['path_1', 'img_1']()\
-    .image_decode['path_2', 'img_2']()\
-    .image_embedding.timm['img_1', 'emb_1'](model_name='resnet50')\
-    .image_embedding.timm['img_2', 'emb_2'](model_name='resnet50')\
-    .runas_op[('emb_1', 'emb_2'), 'is_sim'](lambda x, y: np.linalg.norm(x - y) < thresh)\
-    .select['is_sim']()
+p = (
+    pipe.input('target', 'path')
+        .flat_map('path', 'path', lambda x: x)
+        .map('target', 'target', ops.image_decode.cv2('rgb'))
+        .map('path', 'image', ops.image_decode.cv2('rgb'))
+        .map('target', 'target_emb', ops.image_embedding.timm(model_name='resnet50'))
+        .map('image', 'emb', ops.image_embedding.timm(model_name='resnet50'))
+        .map(('emb', 'target_emb'), 'is_similar', lambda x, y: np.linalg.norm(x - y) < thresh)
+        .output('target', 'image', 'is_similar')
+)
+
+res = p('lena.png', ['lena.png', 'towhee_logo.png'])
+DataCollection(res).show()
 ```
 
 And that's it! Have fun and happy embedding :)
