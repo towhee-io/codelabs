@@ -43,7 +43,7 @@ emb_pipe = (
         .map('image', 'emb', ops.image_embedding.timm(model_name='resnet50'))
 )
 
-emb_res = emb_pipe.output('target', 'image', 'path', 'emb', 'target_emb')
+emb_res = emb_pipe.output('target', 'image', 'path', 'emb', 'target_emb')('lena.png', ['lena.png', 'towhee_logo.png'])
 ```
 ![](./pic/emb.png)
 
